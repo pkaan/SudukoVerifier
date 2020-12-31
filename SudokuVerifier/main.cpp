@@ -20,6 +20,18 @@ int verify(std::string solution) {
     	}
     }
 
+    //Testing the digits
+    int solution_length = solution.length();
+    if (solution_length != 81) {
+    	return -1;
+    }
+    else {
+    	bool positive_digit = (solution.find_first_not_of( "123456789" ) != std::string::npos);
+    		if (positive_digit == true) {
+    			return -1;
+    		}
+    }
+
     // Testing the lines
     for (int i = 0; i < 9; i++) {
     	std::vector<char> list;
@@ -95,9 +107,12 @@ int main() {
     std::string possible_solution3 = "111111111912345678891234567789123456678912345567891234456789123345678912234567891";
     //Incorrect row
     std::string possible_solution4 = "123456789123456789123456789123456789123456789123456789123456789123456789123456789";
+    //Not positive digits
+    std::string possible_solution5 = "1234567-9123456789123456789123456789123456789123456789123456789123456789123456789";
 
     std::cout << "----SUDOKU VERIFIER----" << std::endl
     		<< "Valid solution:      0" << std::endl
+			<< "Invalid digits:     -1" << std::endl
     		<< "Incorrect sub-grid: -2" << std::endl
 			<< "Incorrect line:     -3" << std::endl
 			<< "Incorrect row:      -4" << std::endl
@@ -108,6 +123,7 @@ int main() {
     std::cout << "Solution 2: " << "Number: "<< verify(possible_solution2) << std::endl;
     std::cout << "Solution 3: " << "Number: "<< verify(possible_solution3) << std::endl;
     std::cout << "Solution 4: " << "Number: "<< verify(possible_solution4) << std::endl;
+    std::cout << "Solution 5: " << "Number:  "<< verify(possible_solution5) << std::endl;
 
     return 0;
 }
