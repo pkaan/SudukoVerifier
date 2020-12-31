@@ -108,7 +108,7 @@ int main() {
     //Incorrect row
     std::string possible_solution4 = "123456789123456789123456789123456789123456789123456789123456789123456789123456789";
     //Not positive digits
-    std::string possible_solution5 = "1234567-9123456789123456789123456789123456789123456789123456789123456789123456789";
+    std::string possible_solution5 = "1234567977u9123456789123456789123456789123456789123456788889123456789123456789123456789";
 
     std::cout << "----SUDOKU VERIFIER----" << std::endl
     		<< "Valid solution:      0" << std::endl
@@ -123,7 +123,7 @@ int main() {
     std::cout << "Solution 2: " << "Number: "<< verify(possible_solution2) << std::endl;
     std::cout << "Solution 3: " << "Number: "<< verify(possible_solution3) << std::endl;
     std::cout << "Solution 4: " << "Number: "<< verify(possible_solution4) << std::endl;
-    std::cout << "Solution 5: " << "Number:  "<< verify(possible_solution5) << std::endl;
+    std::cout << "Solution 5: " << "Number: "<< verify(possible_solution5) << std::endl;
 
     return 0;
 }
