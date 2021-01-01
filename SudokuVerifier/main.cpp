@@ -1,8 +1,10 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <sstream>
 #include <algorithm>
+
 
 std::vector<char> splitSolutionToChars(std::string possible_solution) {
 	std::vector<char> characters(possible_solution.begin(), possible_solution.end());
@@ -28,6 +30,7 @@ int verify(std::string solution) {
     else {
     	bool positive_digit = (solution.find_first_not_of( "123456789" ) != std::string::npos);
     		if (positive_digit == true) {
+    			//Incorrect digits
     			return -1;
     		}
     }
@@ -99,17 +102,6 @@ int verify(std::string solution) {
 }
 
 int main() {
-	//Valid solution
-    std::string possible_solution1 = "417369825632158947958724316825437169791586432346912758289643571573291684164875293";
-    //Incorrect sub-grid
-    std::string possible_solution2 = "123456789912345678891234567789123456678912345567891234456789123345678912234567891";
-    //Incorrect line
-    std::string possible_solution3 = "111111111912345678891234567789123456678912345567891234456789123345678912234567891";
-    //Incorrect row
-    std::string possible_solution4 = "123456789123456789123456789123456789123456789123456789123456789123456789123456789";
-    //Not positive digits
-    std::string possible_solution5 = "1234567977u9123456789123456789123456789123456789123456788889123456789123456789123456789";
-
     std::cout << "----SUDOKU VERIFIER----" << std::endl
     		<< "Valid solution:      0" << std::endl
 			<< "Invalid digits:     -1" << std::endl
@@ -119,11 +111,18 @@ int main() {
 			<< "(See help: verifier.pdf) \r" << std::endl;
 
     std::cout  << "--------RESULTS--------" << std::endl;
-    std::cout << "Solution 1: " << "Number:  "<< verify(possible_solution1) << std::endl;
-    std::cout << "Solution 2: " << "Number: "<< verify(possible_solution2) << std::endl;
-    std::cout << "Solution 3: " << "Number: "<< verify(possible_solution3) << std::endl;
-    std::cout << "Solution 4: " << "Number: "<< verify(possible_solution4) << std::endl;
-    std::cout << "Solution 5: " << "Number: "<< verify(possible_solution5) << std::endl;
+	std::ifstream myfile;
+	myfile.open("solutions.txt");
+	std::string line;
+	int line_number = 0;
+	while (std::getline(myfile, line)) {
+		line_number++;
+		if (verify(line) == 0) {
+			std::cout << "Solution "<< line_number << ":          " <<  verify(line) << std::endl;;
 
+		} else {
+		std::cout << "Solution "<< line_number << ":         " <<  verify(line) << std::endl;;
+		}
+	}
     return 0;
 }
