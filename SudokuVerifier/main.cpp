@@ -137,7 +137,7 @@ std::string verify(std::string solution) {
 }
 
 void showInfo() {
-    std::cout << "----SUDOKU VERIFIER----" << std::endl
+    std::cout << "------SUDOKU VERIFIER-----" << std::endl
     		<< "Valid solution:\t\t 0" << std::endl
 			<< "Invalid digits:\t\t-1" << std::endl
     		<< "Incorrect sub-grid:\t-2" << std::endl
