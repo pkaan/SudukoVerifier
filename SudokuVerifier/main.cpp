@@ -108,62 +108,58 @@ bool verifySubGrids(char sudoku_grid[9][9]) {
 	return true;
 }
 
-int verify(std::string solution) {
-    //Build grid (9x9)
-	buildGrid(solution);
-
+std::string verify(std::string solution) {
 	//Verify Digits. If not valid return -1.
 	if (verifyDigits(solution) == false) {
-		return -1;
+		return "-1";
 	}
+
+    //Digits are valid. Build the Sudoku grid (9x9).
+	buildGrid(solution);
 
     // Verify lines. If not valid return -3.
     if (verifyLines(sudoku_grid) == false) {
-    	return -3;
+    	return "-3";
     }
 
     // Verify rows. If not valid return -4.
     if (verifyRows(sudoku_grid) == false) {
-    	return -4;
+    	return "-4";
     }
 
 	// Verify 3x3 sub-grids. If not valid return -2.
     if (verifySubGrids(sudoku_grid) == false) {
-    	return -2;
+    	return "-2";
     }
 
 	// Valid solution. Return 0.
-	return 0;
+	return " 0";
 }
 
 void showInfo() {
     std::cout << "----SUDOKU VERIFIER----" << std::endl
-    		<< "Valid solution:      0" << std::endl
-			<< "Invalid digits:     -1" << std::endl
-    		<< "Incorrect sub-grid: -2" << std::endl
-			<< "Incorrect line:     -3" << std::endl
-			<< "Incorrect row:      -4" << std::endl
+    		<< "Valid solution:\t\t 0" << std::endl
+			<< "Invalid digits:\t\t-1" << std::endl
+    		<< "Incorrect sub-grid:\t-2" << std::endl
+			<< "Incorrect line:\t\t-3" << std::endl
+			<< "Incorrect row:\t\t-4" << std::endl
 			<< "(See help: verifier.pdf) \r" << std::endl;
 }
 
 void start() {
 	//Show info
 	showInfo();
-	//Open the file containing the solutions.
+	//Open the file containing the solutions
 	std::ifstream myfile;
 	myfile.open("solutions.txt");
+	//Read the file line by line.
 	std::string line;
 	int line_number = 0;
-	//Go through the file line by line. Verify solutions and show the results.
-    std::cout  << "--------RESULTS--------" << std::endl;
+    std::cout  << "----------RESULTS---------" << std::endl;
 	while (std::getline(myfile, line)) {
 		line_number++;
-		if (verify(line) == 0) {
-			std::cout << "Solution "<< line_number << ":          " <<  verify(line) << std::endl;;
-
-		} else {
-			std::cout << "Solution "<< line_number << ":         " <<  verify(line) << std::endl;;
-		}
+		//Verify solution. Print result.
+		std::cout << "Solution "<< line_number << ":\t\t" <<  verify(line) << std::endl;;
 	}
 }
 
