@@ -159,7 +159,7 @@ void start() {
 	while (std::getline(myfile, line)) {
 		line_number++;
 		//Verify solution. Print result.
-		std::cout << "Solution "<< line_number << ":\t\t" <<  verify(line) << std::endl;;
+		std::cout << "Solution "<< line_number << ":\t\t" << verify(line) << std::endl;;
 	}
 }
 
