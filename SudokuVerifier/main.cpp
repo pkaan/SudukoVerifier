@@ -18,7 +18,7 @@ bool verifySubGrids(char sudoku_grid[9][9]);
 
 int main() {
 	start();
-    return 0;
+	return 0;
 }
 
 void start() {
@@ -26,15 +26,19 @@ void start() {
 	showInfo();
 	//Open the file containing the solutions
 	std::ifstream myfile;
-	myfile.open("solutions.txt");
-	//Read the file line by line.
-	std::string line;
-	int line_number = 0;
-    std::cout  << "----------RESULTS---------" << std::endl;
-	while (std::getline(myfile, line)) {
-		line_number++;
-		//Verify solution. Print result.
-		std::cout << "Solution "<< line_number << ":\t\t" << verify(line) << std::endl;;
+	try {
+		myfile.open("solutions.txt");
+		//Read the file line by line.
+		std::string line;
+		int line_number = 0;
+		std::cout  << "----------RESULTS---------" << std::endl;
+		while (std::getline(myfile, line)) {
+			line_number++;
+			//Verify solution. Print result.
+			std::cout << "Solution "<< line_number << ":\t\t" << verify(line) << std::endl;;
+		}
+	} catch (std::system_error& exception){
+	    std::cout << exception.code().message() << std::endl;
 	}
 }
 
@@ -42,7 +46,7 @@ void showInfo() {
     std::cout << "------SUDOKU VERIFIER-----" << std::endl
     		<< "Valid solution:\t\t 0" << std::endl
 			<< "Invalid digits:\t\t-1" << std::endl
-    		<< "Incorrect sub-grid:\t-2" << std::endl
+			<< "Incorrect sub-grid:\t-2" << std::endl
 			<< "Incorrect line:\t\t-3" << std::endl
 			<< "Incorrect row:\t\t-4" << std::endl
 			<< "(See help: verifier.pdf) \r" << std::endl;
