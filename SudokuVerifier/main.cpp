@@ -52,7 +52,6 @@ void showInfo() {
 			<< "(See help: verifier.pdf) \r" << std::endl;
 }
 
-
 std::string verify(std::string solution) {
     //Verify Digits. If not valid return -1.
     if (verifyDigits(solution) == false) {
