@@ -4,7 +4,7 @@ This verifier checks the validity of a given solution for a Sudoku game.
 
 Solutions can be found in "solutions.txt".
 
-Gamers can add their own solutions to the text file.
+Players can add their own solutions to the text file.
 
 More help: see "verifier.pdf".
 
